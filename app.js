@@ -1,22 +1,14 @@
 #!/usr/bin/env nodejs
 
-var http = require("http");
-var connect = require('connect');
-// console.log('\n\n--- Node Version: ' + process.version + ' ---');
-
-// Set up Connect routing
-var app = connect()
-    .use(connect.static(__dirname + '/sites/ap'))
-    .use(function(req, res) {
-        console.log('Could not find handler for: ' + req.url);
-        res.end('Could not find handler for: ' + req.url);
-    })
-    .use(function(err, req, res, next) {
-        console.log('Error trapped by Connect: ' + err.message + ' : ' + err.stack);
-        res.end('Error trapped by Connect: ' + err.message);
-    });
-
-// Start node server listening on specified port -----
-http.createServer(app).listen(10001);
-
-// console.log('HTTP server listening on port 80');
+var http = require('http');
+http.createServer(function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<!doctype html>\n<html lang="en">\n' +
+        '<head>\n<meta charset="utf-8">\n<title>P Web</title>\n' +
+        '<style type="text/css">* {font-family:arial, sans-serif;}</style>\n' +
+        '</head>\n<body>\n<h1>Why?</h1>\n' +
+        '<div id="content"><p>There:</p><ul><li>Because I can</li><li>Why not?!</li><li>Try something new</li><li>For fun ?!?!?</li></ul></div>' +
+        '\n</body>\n</html>');
+    res.end();
+}).listen(10001, 'localhost');
+//console.log('Server running at http://localhost:8081/');
