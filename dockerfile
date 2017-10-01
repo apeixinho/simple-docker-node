@@ -6,7 +6,7 @@ RUN addgroup -S app && adduser -S -g app app && \
     chown -R app:app /home/app && \
     rm -f /var/cache/apk/*
 
-RUN npm i -g http connect pm2 
+RUN npm i -g http express pm2 
 
 WORKDIR /home/app
 
