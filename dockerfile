@@ -2,11 +2,11 @@ FROM mhart/alpine-node
 
 RUN addgroup -S app && adduser -S -g app app && \
     apk update && apk upgrade && \
-    apk add --no-cache build-base python curl ca-certificates && \
-    update-ca-certificates && \
+    apk add --no-cache build-base && \
     chown -R app:app /home/app && \
-    npm i -g http connect pm2 && \
     rm -f /var/cache/apk/*
+
+RUN npm i -g http connect pm2 
 
 WORKDIR /home/app
 
