@@ -11,4 +11,4 @@ http.createServer(function(req, res) {
         '\n</body>\n</html>');
     res.end();
 }).listen(10001, 'localhost');
-//console.log('Server running at http://localhost:8081/');
+console.log('Server running at http://localhost:10001/');
