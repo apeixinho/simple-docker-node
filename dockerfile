@@ -5,7 +5,7 @@ RUN addgroup -S app && adduser -S -g app app && \
     apk add --no-cache build-base python curl ca-certificates && \
     update-ca-certificates && \
     chown -R app:app /home/app && \
-    npm i -g pm2 && \
+    npm i -g http connect pm2 && \
     rm -f /var/cache/apk/*
 
 WORKDIR /home/app
