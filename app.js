@@ -2,11 +2,16 @@
 
 const express = require('express')
 const app = express()
+const port = 10001
 
-app.get('/', function (req, res) {
-  res.send('Hello World!!!');
+app.get('/', (request, response) => {
+  response.send('Hello from Express!')
 })
 
-app.listen(10001, function () {
-  console.log('Example app listening on port 10001');
+app.listen(port, (err) => {
+  if (err) {
+    return console.log('something bad happened', err)
+  }
+
+  console.log(`server is listening on ${port}`)
 })
