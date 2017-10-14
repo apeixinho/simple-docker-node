@@ -9,7 +9,7 @@ RUN addgroup -S app && adduser -S -g app app && \
 
 WORKDIR /home/app
 
-COPY processes.json app.js $WORKDIR/
+COPY ./processes.json ./app.js $WORKDIR/
 
 USER app
 
