@@ -15,4 +15,4 @@ USER app
 
 EXPOSE 10001
 
-CMD ["pm2-docker", "app.js"]
+CMD ["pm2", "start","app.js"]
