@@ -7,12 +7,12 @@ networks:
 
 services:
   app1:
-    container_name: app1
-    image: httpd
+    container_name: app1-ap
+    image: app1-ap
     networks:
       - proxy-tier
     environment:
-      VIRTUAL_HOST: "<YOUR FQDN>"
+      VIRTUAL_HOST: "www.adolfo-peixinho.eu.org"
       VIRTUAL_NETWORK: "caddy-proxy"
       VIRTUAL_PORT: 80
     restart: always
