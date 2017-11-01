@@ -19,7 +19,7 @@ services:
 
 networks:
   proxy-tier:
-    external:
+    external: true
 
 # environment:
 #   VIRTUAL_HOST: domain.com, www.domain.com
