@@ -6,10 +6,16 @@ services:
     image: app1-ap
     networks:
       - proxy-tier
+    expose:
+      - "80"
+      - "443"  
     environment:
       VIRTUAL_HOST: adolfo-peixinho.eu.org, www.adolfo-peixinho.eu.org
+      LETSENCRYPT_HOST: adolfo-peixinho.eu.org, www.adolfo-peixinho.eu.org
+      LETSENCRYPT_EMAIL: youradminrules@fu.org
       VIRTUAL_PROTO: https
-    restart: always
+      VIRTUAL_PORT: 443
+    restart: always    
 
 networks:
   proxy-tier:
