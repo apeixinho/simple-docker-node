@@ -1,7 +1,9 @@
 # Example Caddyfile config for a reverse proxy
 # Use the name of your container in the proxy definition below
 
-www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
+
+
+http://www.adolfo-peixinho.eu.org, http://adolfo-peixinho.eu.org {
 
 				proxy / app1-ap:10001 {
 					# proxy_header Host {host}
@@ -22,7 +24,7 @@ www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
         # tls example@example.com #Your email for Let's Encrypt Verification
 }
 
-www.peixe.eu.org, peixe.eu.org {
+http://www.peixe.eu.org, http://peixe.eu.org {
 
 				proxy / app2-ap:10002 {
 					# proxy_header Host {host}
