@@ -1,22 +1,22 @@
-##Example Caddyfile config for a reverse proxy
+# Example Caddyfile config for a reverse proxy
 
 www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
 
-				proxy / app1-ap:10001 {#This is the name of your container
+				proxy / app1-ap:10001 { # This is the name of your container
 					proxy_header Host {host}
 					proxy_header X-Real-IP {remote}
 					proxy_header X-Forwarded-Proto {scheme}
 				}
 
 				header / {
-					#Include any headers for your site here
+					# Include any headers for your site here
 				}
 
 				gzip
 
         tls off
 
-        #tls example@example.com #Your email for Let's Encrypt Verification
+        # tls example@example.com #Your email for Let's Encrypt Verification
 }
 
 www.peixe.eu.org, peixe.eu.org {
@@ -35,5 +35,5 @@ www.peixe.eu.org, peixe.eu.org {
 
         tls off
 
-        #tls example@example.com #Your email for Let's Encrypt Verification
+        # tls example@example.com #Your email for Let's Encrypt Verification
 }
