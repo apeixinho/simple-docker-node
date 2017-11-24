@@ -1,8 +1,9 @@
 # Example Caddyfile config for a reverse proxy
+# Use the name of your container in the proxy definition below
 
 www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
 
-				proxy / app1-ap:10001 { # This is the name of your container
+				proxy / app1-ap:10001 {
 					proxy_header Host {host}
 					proxy_header X-Real-IP {remote}
 					proxy_header X-Forwarded-Proto {scheme}
@@ -28,7 +29,7 @@ www.peixe.eu.org, peixe.eu.org {
 				}
 
 				header / {
-					#Include any headers for your site here
+					# Include any headers for your site here
 				}
 
 				gzip

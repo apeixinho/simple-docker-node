@@ -42,4 +42,4 @@ services:
 
 networks:
   proxy-tier:
-    external: true
+    # external: true
