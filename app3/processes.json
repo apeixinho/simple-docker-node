@@ -1,13 +1,13 @@
 {
     "apps": [
         {
-            "name": "simple-app",
-            "script": "app.js",
+            "name": "simple-app3",
+            "script": "app3.js",
             "max_restarts": 20,
             "instances": 2,
             "max_memory_restart": "10M",
             "env": {
-                "PORT": 10001,
+                "PORT": 10003,
                 "NODE_ENV": "production"
             }
         }

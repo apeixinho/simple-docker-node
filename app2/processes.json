@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "simple-app2",
+            "script": "app2.js",
+            "max_restarts": 20,
+            "instances": 2,
+            "max_memory_restart": "10M",
+            "env": {
+                "PORT": 10002,
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}

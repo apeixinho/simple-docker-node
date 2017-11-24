@@ -1,29 +1,45 @@
-version: '3'
+version: "3.2"
 
 services:
+  proxy:
+    image: zzrot/alpine-caddy
+    ports:
+      - 80:80
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./.caddy-certs:/root/.caddy
+    networks:
+      - proxy-tier
+    restart: always
+
+  # example-server:
+  #   image: zzrot/alpine-caddy
+  #   expose:
+  #     - 80
+  #   volumes:
+  #     - ./public:/var/www/html
+  #   networks:
+  #     - proxy-tier
   app1:
+    build: app1
     container_name: app1-ap
     image: app1-ap
     networks:
       - proxy-tier
     expose:
-      - "80"
-      - "443"  
-    environment:
-      VIRTUAL_HOST: adolfo-peixinho.eu.org, www.adolfo-peixinho.eu.org
-      LETSENCRYPT_HOST: adolfo-peixinho.eu.org, www.adolfo-peixinho.eu.org
-      LETSENCRYPT_EMAIL: youradminrules@fu.org
-      VIRTUAL_PROTO: https
-      VIRTUAL_PORT: 443
-    restart: always    
+      - "10001"
+    restart: always
+
+  app2:
+    build: app2
+    container_name: app2-ap
+    image: app2-ap
+    networks:
+      - proxy-tier
+    expose:
+      - "10002"
+    restart: always
 
 networks:
   proxy-tier:
     external: true
-
-# environment:
-#   VIRTUAL_HOST: domain.com, www.domain.com
-#   VIRTUAL_PROTO: https
-  # VIRTUAL_PORT: 443
-  # LETSENCRYPT_HOST: domain.com, www.domain.com
-  # LETSENCRYPT_EMAIL: your_email@domain.com    
