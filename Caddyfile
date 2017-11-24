@@ -4,11 +4,13 @@
 www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
 
 				proxy / app1-ap:10001 {
-					proxy_header Host {host}
-					proxy_header X-Real-IP {remote}
-					proxy_header X-Forwarded-Proto {scheme}
+					# proxy_header Host {host}
+					# proxy_header X-Real-IP {remote}
+					# proxy_header X-Forwarded-Proto {scheme}
+					policy round_robin
+					health_check /health
+					transparent
 				}
-
 				header / {
 					# Include any headers for your site here
 				}
@@ -23,9 +25,12 @@ www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org {
 www.peixe.eu.org, peixe.eu.org {
 
 				proxy / app2-ap:10002 {
-					proxy_header Host {host}
-					proxy_header X-Real-IP {remote}
-					proxy_header X-Forwarded-Proto {scheme}
+					# proxy_header Host {host}
+					# proxy_header X-Real-IP {remote}
+					# proxy_header X-Forwarded-Proto {scheme}
+					policy round_robin
+					health_check /health
+					transparent
 				}
 
 				header / {
