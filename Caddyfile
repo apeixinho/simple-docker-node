@@ -2,6 +2,8 @@
 # Use the name of your container in the proxy definition below
 
 
+log stdout
+errors stderr
 
 http://www.adolfo-peixinho.eu.org, http://adolfo-peixinho.eu.org {
 
