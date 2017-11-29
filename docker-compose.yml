@@ -1,45 +1,41 @@
 version: "3.2"
 
 services:
-  proxy:
-    image: zzrot/alpine-caddy
-    ports:
-      - 80:80
-    volumes:
-      - ./Caddyfile:/etc/Caddyfile
-      - ./.caddy-certs:/root/.caddy
-    networks:
-      - proxy-tier
-    restart: always
-
-  # example-server:
-  #   image: zzrot/alpine-caddy
-  #   expose:
-  #     - 80
-  #   volumes:
-  #     - ./public:/var/www/html
-  #   networks:
-  #     - proxy-tier
   app1:
     build: app1
-    container_name: app1-ap
-    image: app1-ap
-    networks:
-      - proxy-tier
+    container_name: app1
+    image: app1
     expose:
       - "10001"
-    restart: always
-
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
+      LETSENCRYPT_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
+      LETSENCRYPT_EMAIL: admin@vps.domain
   app2:
     build: app2
-    container_name: app2-ap
-    image: app2-ap
-    networks:
-      - proxy-tier
+    container_name: app2
+    image: app2
     expose:
       - "10002"
-    restart: always
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
+      LETSENCRYPT_HOST: www.peixe.eu.org, peixe.eu.org
+      LETSENCRYPT_EMAIL: admin@vps.domain
+  app3:
+    build: app3
+    container_name: app3
+    image: app3
+    expose:
+      - "10002"
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org
+      LETSENCRYPT_HOST: www.hoho.eu.org, hoho.eu.org
+      LETSENCRYPT_EMAIL: admin@vps.domain
 
 networks:
-  proxy-tier:
-    # external: true
+  default:
+    external:
+      name: webproxy
