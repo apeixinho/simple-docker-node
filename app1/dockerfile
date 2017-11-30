@@ -17,4 +17,4 @@ USER app
 EXPOSE 10001
 
 # CMD ["pm2-docker", "start","processes.json"]
-CMD ["tail","-f /dev/null"]
+CMD ["tail","-f", "/dev/null"]
