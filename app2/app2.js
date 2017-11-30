@@ -4,13 +4,12 @@ const express = require('express')
 const app = express()
 const port = 10002
 
-app.get('/', (request, response) => {
-  response.send('Hello from peixe.eu.org')
-})
+app.get('/', (req, res) => res.send('Hello from peixe.eu.org'));
 
 app.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
+  if (err){
+    console.log('something bad happened', err);
   }
-  console.log(`server is listening on ${port}`)
-})
+   console.log("Example app listening on port", port);
+});
+

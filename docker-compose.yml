@@ -8,10 +8,10 @@ services:
     expose:
       - "10001"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
-      LETSENCRYPT_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
-      LETSENCRYPT_EMAIL: admin@vps.domain
+    # environment:
+    #   VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
+    #   LETSENCRYPT_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
+    #   LETSENCRYPT_EMAIL: admin@vps.domain
   app2:
     build: app2
     container_name: app2
@@ -19,10 +19,10 @@ services:
     expose:
       - "10002"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
-      LETSENCRYPT_HOST: www.peixe.eu.org, peixe.eu.org
-      LETSENCRYPT_EMAIL: admin@vps.domain
+    # environment:
+    #   VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
+    #   LETSENCRYPT_HOST: www.peixe.eu.org, peixe.eu.org
+    #   LETSENCRYPT_EMAIL: admin@vps.domain
   app3:
     build: app3
     container_name: app3
@@ -30,10 +30,10 @@ services:
     expose:
       - "10002"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org
-      LETSENCRYPT_HOST: www.hoho.eu.org, hoho.eu.org
-      LETSENCRYPT_EMAIL: admin@vps.domain
+    # environment:
+    #   VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org
+    #   LETSENCRYPT_HOST: www.hoho.eu.org, hoho.eu.org
+    #   LETSENCRYPT_EMAIL: admin@vps.domain
 
 networks:
   default:
