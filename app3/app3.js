@@ -2,8 +2,11 @@
 
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
 const app = express();
 const port = 10003;
+
+app.use(helmet());
 
 // define path from where to server static files, in our case 
 // root directory so we don't need to add any path

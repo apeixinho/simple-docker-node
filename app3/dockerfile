@@ -27,7 +27,7 @@ USER node
 WORKDIR /home/node
 
 RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
-    npm i express --no-save --no-package-lock --ignore-scripts 
+    npm i express helmet --no-save --no-package-lock --ignore-scripts 
 
 EXPOSE 10003
 
