@@ -5,6 +5,7 @@ services:
     build: app1
     container_name: app1
     image: app1
+    ports:
     expose:
       - "10001"
     restart: unless-stopped
@@ -28,7 +29,7 @@ services:
     container_name: app3
     image: app3
     expose:
-      - "10002"
+      - "10003"
     restart: unless-stopped
     # environment:
     #   VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org

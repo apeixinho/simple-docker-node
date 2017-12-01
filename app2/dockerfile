@@ -1,19 +1,35 @@
 FROM node:8-alpine
 
-RUN addgroup -S app && adduser -S -g app app && \
-    apk update && apk upgrade && \
+
+# Setup environment variables. 
+# If using one liner breakpoint '\' you can't use previously defined
+# variables in posterior variables. Just define ENV per line
+ENV NODE_ENV=production
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
+
+# Following best practices at:
+# https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md
+
+# add a group and user for our app, for a system user or group
+# add '-S' to addgroup or adduser commands
+#RUN addgroup -S app && adduser -S -g app app && \
+RUN apk update && apk upgrade && \
     apk add --no-cache build-base && \
-    npm i pm2 express && \
     rm -f /var/cache/apk/*
 
-WORKDIR /home/app
+COPY pm2-conf.json app2.js public /home/node/
 
-COPY processes.json app2.js /home/app/
+RUN chown -R node:node /home/node
 
-RUN chown -R app:app /home/app
+USER node
 
-USER app
+WORKDIR /home/node
 
-EXPOSE 10002
+RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
+    npm i express --no-save --no-package-lock --ignore-scripts 
 
-CMD ["pm2-docker", "start","processes.json"]
+EXPOSE 10001
+
+CMD ["pm2-docker", "start", "pm2-conf.json"]
+# CMD ["tail","-f", "/dev/null"]
