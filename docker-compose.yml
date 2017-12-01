@@ -5,7 +5,6 @@ services:
     build: app1
     container_name: app1
     image: app1
-    ports:
     expose:
       - "10001"
     restart: unless-stopped
