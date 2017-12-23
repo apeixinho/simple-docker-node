@@ -12,7 +12,7 @@ services:
       VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
       LETSENCRYPT_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
       LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: true
+      LETSENCRYPT_TEST: "true"
   app2:
     build: app2
     container_name: app2
@@ -24,7 +24,7 @@ services:
       VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
       LETSENCRYPT_HOST: www.peixe.eu.org, peixe.eu.org
       LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: true
+      LETSENCRYPT_TEST: "true"
   app3:
     build: app3
     container_name: app3
@@ -36,7 +36,7 @@ services:
       VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org
       LETSENCRYPT_HOST: www.hoho.eu.org, hoho.eu.org
       LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: true
+      LETSENCRYPT_TEST: "true"
 
 networks:
   default:
