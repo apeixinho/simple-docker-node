@@ -6,7 +6,7 @@ services:
     container_name: app1
     image: app1
     expose:
-      - "10001"
+      - "10011"
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
@@ -18,7 +18,7 @@ services:
     container_name: app2
     image: app2
     expose:
-      - "10002"
+      - "10012"
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
@@ -30,7 +30,7 @@ services:
     container_name: app3
     image: app3
     expose:
-      - "10003"
+      - "10013"
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org

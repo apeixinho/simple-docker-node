@@ -29,7 +29,7 @@ WORKDIR /home/node
 RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
     npm i express helmet --no-save --no-package-lock --ignore-scripts 
 
-EXPOSE 10001
+EXPOSE 10011
 
 CMD ["pm2-docker", "start", "pm2-conf.json"]
 # CMD ["tail","-f", "/dev/null"]
