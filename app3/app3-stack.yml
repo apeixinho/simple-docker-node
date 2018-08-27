@@ -15,7 +15,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.frontend.entryPoints=http,https"  
-        - "traefik.frontend.rule=Host:hoho.eu.org,www.hoho.eu.org;PathPrefixStrip:/app3/"
+        - "traefik.frontend.rule=Host:hoho.eu.org,www.hoho.eu.org;PathStrip:/app3/"
         - "traefik.backend=app3"
         - "traefik.backend.loadbalancer.method=drr"
         - "traefik.port=10013"
