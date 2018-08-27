@@ -1,0 +1,27 @@
+version: "3.6"
+services:
+  app3:
+    image: app3
+    networks:
+      - webgateway
+    deploy:
+      # replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 60M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.frontend.entryPoints=http,https"  
+        - "traefik.frontend.rule=Host:hoho.eu.org,www.hoho.eu.org;PathPrefixStrip:/app3/"
+        - "traefik.backend=app3"
+        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.port=10013"
+        - "traefik.docker.network=webgateway"
+
+networks:
+  webgateway:
+    driver: overlay
+    external: true

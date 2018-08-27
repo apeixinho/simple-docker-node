@@ -1,0 +1,27 @@
+version: "3.6"
+services:
+  app2:
+    image: app2
+    networks:
+      - webgateway
+    deploy:
+      # replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 60M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.frontend.entryPoints=http,https"  
+        - "traefik.frontend.rule=Host:hoho.eu.org,www.hoho.eu.org;PathPrefixStrip:/app2/"
+        - "traefik.backend=app2"
+        - "traefik.backend.loadbalancer.method=drr"
+        - "traefik.port=10012"
+        - "traefik.docker.network=webgateway"
+
+networks:
+  webgateway:
+    driver: overlay
+    external: true

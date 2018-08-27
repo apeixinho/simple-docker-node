@@ -1,12 +1,11 @@
-FROM node:8-alpine
-
+FROM node:carbon-alpine
 
 # Setup environment variables. 
 # If using one liner breakpoint '\' you can't use previously defined
 # variables in posterior variables. Just define ENV per line
 ENV NODE_ENV=production
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
+# ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+# ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
 
 # Following best practices at:
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md
