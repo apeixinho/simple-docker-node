@@ -1,34 +1,50 @@
-FROM node:carbon-alpine
+FROM node:lts-alpine
 
-# Setup environment variables. 
+# Setup environment variables.
 # If using one liner breakpoint '\' you can't use previously defined
 # variables in posterior variables. Just define ENV per line
 ENV NODE_ENV=production
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
+# ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+# ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
+
+# update and upgrade, install required packages with no cache
+RUN apk update && apk upgrade && \
+    apk add --no-cache build-base git && \
+    rm -f /var/cache/apk/*
+# 
+# add variables to PATH
+# ENV PATH=${PATH}:"$(yarn global bin)"
+
+# https://www.alpinelinux.org/posts/Docker-image-vulnerability-CVE-2019-5021.html
+# https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5021
+# make sure root login is disabled
+RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 
 # Following best practices at:
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md
+#
+# add a group and user for our app, for a system user or group add '-S' to addgroup or adduser commands
+#
+RUN addgroup app -S && adduser -S -g app app
 
-# add a group and user for our app, for a system user or group
-# add '-S' to addgroup or adduser commands
-#RUN addgroup -S app && adduser -S -g app app && \
-RUN apk update && apk upgrade && \
-    apk add --no-cache build-base && \
-    rm -f /var/cache/apk/*
+COPY pm2-conf.json app2.js public /home/app/site2/
 
-COPY pm2-conf.json app2.js public /home/node/
+# RUN chown -R node:node /home/node
+RUN chown -R app:app /home/app
 
-RUN chown -R node:node /home/node
+# USER node
+USER app
 
-USER node
+# WORKDIR /home/node
+WORKDIR /home/app/site2
 
-WORKDIR /home/node
-
-RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
-    npm i express helmet --no-save --no-package-lock --ignore-scripts 
+RUN yarn global add pm2 express helmet --no-lockfile --ignore-scripts && \ 
+    yarn cache clean
+# RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
+# npm i express helmet --no-save --no-package-lock --ignore-scripts 
 
 EXPOSE 10012
 
 CMD ["pm2-docker", "start", "pm2-conf.json"]
+# CMD ["node_modules/pm2/bin/pm2-docker", "start", "pm2-conf.json"]
 # CMD ["tail","-f", "/dev/null"]
