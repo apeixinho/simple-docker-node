@@ -8,11 +8,11 @@ services:
     expose:
       - "10011"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
-      LETSENCRYPT_HOST: www.adolfo-peixinho.eu.org, adolfo-peixinho.eu.org
-      LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: "true"
+    # environment:
+    #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_EMAIL: admin@some-domain.org
+    #   LETSENCRYPT_TEST: "true"
   app2:
     build: app2
     container_name: app2
@@ -20,11 +20,11 @@ services:
     expose:
       - "10012"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.peixe.eu.org, peixe.eu.org
-      LETSENCRYPT_HOST: www.peixe.eu.org, peixe.eu.org
-      LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: "true"
+    # environment:
+    #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_EMAIL: admin@some-domain.org
+    #   LETSENCRYPT_TEST: "true"
   app3:
     build: app3
     container_name: app3
@@ -32,13 +32,13 @@ services:
     expose:
       - "10013"
     restart: unless-stopped
-    environment:
-      VIRTUAL_HOST: www.hoho.eu.org, hoho.eu.org
-      LETSENCRYPT_HOST: www.hoho.eu.org, hoho.eu.org
-      LETSENCRYPT_EMAIL: admin@domain.com
-      LETSENCRYPT_TEST: "true"
+    # environment:
+    #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_HOST: www.some-domain.org, some-domain.org
+    #   LETSENCRYPT_EMAIL: admin@some-domain.org
+    #   LETSENCRYPT_TEST: "true"
 
-networks:
-  default:
-    external:
-      name: webproxy
+# networks:
+#   default:
+#     external:
+#       name: webproxy
