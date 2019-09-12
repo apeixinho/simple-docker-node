@@ -5,8 +5,8 @@ services:
     build: app1
     container_name: app1
     image: app1
-    expose:
-      - "10011"
+    ports:
+      - "10011:10011"
     restart: unless-stopped
     # environment:
     #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
@@ -17,8 +17,8 @@ services:
     build: app2
     container_name: app2
     image: app2
-    expose:
-      - "10012"
+    ports:
+      - "10012:10012"
     restart: unless-stopped
     # environment:
     #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
@@ -29,8 +29,8 @@ services:
     build: app3
     container_name: app3
     image: app3
-    expose:
-      - "10013"
+    ports:
+      - "10013:10013"
     restart: unless-stopped
     # environment:
     #   VIRTUAL_HOST: www.some-domain.org, some-domain.org
@@ -38,7 +38,7 @@ services:
     #   LETSENCRYPT_EMAIL: admin@some-domain.org
     #   LETSENCRYPT_TEST: "true"
 
-# networks:
-#   default:
+networks:
+  default:
 #     external:
 #       name: webproxy
