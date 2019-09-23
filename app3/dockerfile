@@ -8,9 +8,10 @@ ENV NODE_ENV=production
 # ENV PATH=${PATH}:${NPM_CONFIG_PREFIX}/bin
 
 # update and upgrade, install required packages with no cache
-RUN apk update && apk upgrade && \
+RUN apk update && apk upgrade 
+    # && \
     # apk add --no-cache build-base git && \
-    rm -f /var/cache/apk/*
+    # rm -f /var/cache/apk/*
 
 # https://www.alpinelinux.org/posts/Docker-image-vulnerability-CVE-2019-5021.html
 # https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5021
@@ -29,7 +30,7 @@ RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
 #
 RUN addgroup app -S && adduser -S -g app app
 
-COPY pm2-conf.json app3.js public /home/app/site3/
+COPY package.json pm2-conf.json app3.js public /home/app/site3/
 
 RUN chown -R app:app /home/app
 
@@ -37,8 +38,7 @@ USER app
 
 WORKDIR /home/app/site3
 
-RUN yarn add pm2 express helmet --no-lockfile --ignore-scripts && \ 
-yarn cache clean
+RUN npm i --no-package-lock --no-cache
 # RUN npm i -g pm2 --no-save --no-package-lock --ignore-scripts && \
 # npm i express helmet --no-save --no-package-lock --ignore-scripts 
 

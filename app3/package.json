@@ -1,0 +1,16 @@
+{
+  "name": "app3",
+  "version": "1.0.0", 
+  "license": "GPL-3.0",
+  "engines": {
+      "node": ">=8.9.0"
+    },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.1",
+    "pm2": "^3.5.1"
+  }
+}
